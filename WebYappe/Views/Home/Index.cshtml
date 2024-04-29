@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ExchangeRates>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Yappe Prueba</h1>
+    <div class="table-responsive mb-4">
+        <table id="example2" class="mb-0 table table-striped table-bordered dt-responsive nowrap statusAppralsa">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Id</th>
+                    <th scope="col" class="text-center">Moneda Origen</th>
+                    <th scope="col" class="text-center">Moneda Destino</th>
+                    <th scope="col" class="text-center">Tasa</th>
+                    <th scope="col" class="text-center">Cantidad</th>
+                    <th scope="col" class="text-center">Tasa De Cambio</th>
+                    <th scope="col" class="text-center">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SourceCurrency)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TargetCurrency)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Rate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AmountWithExchangeRate)</td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Home" asp-route-Id="@item.Id" asp-route-SourceCurrency="@item.SourceCurrency" asp-route-TargetCurrency="@item.TargetCurrency" asp-route-Rate="@item.Rate" asp-route-Amount="@item.Amount" asp-route-AmountWithExchangeRate="@item.AmountWithExchangeRate" class="px-2 text-primary">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
